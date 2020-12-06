@@ -1,0 +1,31 @@
+{
+    "name": "marvin255/random-string-generator",
+    "type": "symfony-bundle",
+    "description": "Random string generator for symfony.",
+    "keywords": ["php", "random string", "symfony"],
+    "license": "MIT",
+    "require": {
+        "php": ">=7.4.0",
+        "symfony/framework-bundle": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "sebastian/phpcpd": "^6.0",
+        "vimeo/psalm": "^4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Marvin255\\RandomStringGenerator\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/marvin255/random-string-generator"
+        }
+    ]
+}
