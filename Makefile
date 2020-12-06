@@ -1,16 +1,8 @@
 #!/usr/bin/make
 
-SHELL = /bin/sh
-
-php_container_name := php
 user_id := $(shell id -u)
-docker_compose_yml := docker/docker-compose.yml
-
-docker_compose_bin := $(shell command -v docker-compose 2> /dev/null) --file "$(docker_compose_yml)"
-php_container_bin := $(docker_compose_bin) run --rm -u $(user_id) "$(php_container_name)"
-
-include docker/.env
-export $(shell sed 's/=.*//' docker/.env)
+docker_compose_bin := $(shell command -v docker-compose 2> /dev/null) --file "Docker/docker-compose.yml"
+php_container_bin := $(docker_compose_bin) run --rm -u "$(user_id)" "php"
 
 .PHONY : help build install shell fixer test
 .DEFAULT_GOAL := build
