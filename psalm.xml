@@ -12,6 +12,7 @@
             <directory name="vendor" />
             <directory name="Docker" />
             <directory name="Resources" />
+            <directory name="Tests" />
         </ignoreFiles>
     </projectFiles>
 

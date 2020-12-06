@@ -27,4 +27,4 @@ linter: ## Run linter to check project
 	$(php_container_bin) vendor/bin/psalm --show-info=true
 
 test: ## Run tests
-	$(php_container_bin) vendor/bin/phpunit run --configuration phpunit.xml.dist
+	$(php_container_bin) vendor/bin/phpunit --configuration phpunit.xml.dist
