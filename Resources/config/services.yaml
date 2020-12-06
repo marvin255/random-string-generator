@@ -5,3 +5,9 @@ services:
 
   Marvin255\RandomStringGenerator\RandomEngine\RandomEngine:
     alias: Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine
+
+  Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator:
+    class: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
+
+  Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator:
+    alias: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
