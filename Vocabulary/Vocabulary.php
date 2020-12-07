@@ -9,6 +9,8 @@ namespace Marvin255\RandomStringGenerator\Vocabulary;
  */
 class Vocabulary
 {
+    public const ALPHA_UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    public const ALPHA_LOWER = 'abcdefghijklmnopqrstuvwxyz';
     public const ALPHA = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     public const NUMERIC = '0123456789';
     public const ALPHA_NUMERIC = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
