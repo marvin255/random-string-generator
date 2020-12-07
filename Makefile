@@ -23,7 +23,7 @@ fixer: ## Run fixer to fix code style
 
 linter: ## Run linter to check project
 	$(php_container_bin) vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation
-	$(php_container_bin) vendor/bin/phpcpd ./ --exclude vendor --exclude tests --exclude Entity --exclude var -v
+	$(php_container_bin) vendor/bin/phpcpd ./ --exclude vendor --exclude tests
 	$(php_container_bin) vendor/bin/psalm --show-info=true
 
 test: ## Run tests
