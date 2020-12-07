@@ -33,7 +33,7 @@ class SiteController extends AbstractController
 }
 ```
 
-Use one of generations methods:
+Use one of generation methods:
 
 ```php
 $this->randomStringGenerator->alphanumeric(10);  // 10 symbols of latin alphabet or digits
