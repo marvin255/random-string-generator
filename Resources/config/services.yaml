@@ -8,6 +8,8 @@ services:
 
   Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator:
     class: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
+    arguments:
+      - '@Marvin255\RandomStringGenerator\RandomEngine\RandomEngine'
 
   Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator:
     alias: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
