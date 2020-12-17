@@ -17,7 +17,7 @@ class DummyRandomStringGenerator implements RandomStringGenerator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function alphanumeric(int $length): string
     {
@@ -25,7 +25,7 @@ class DummyRandomStringGenerator implements RandomStringGenerator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function alpha(int $length): string
     {
@@ -33,7 +33,7 @@ class DummyRandomStringGenerator implements RandomStringGenerator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function numeric(int $length): string
     {
@@ -41,7 +41,7 @@ class DummyRandomStringGenerator implements RandomStringGenerator
     }
 
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function string(int $length, string $vocabulary): string
     {
