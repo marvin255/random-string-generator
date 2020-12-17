@@ -1,15 +1,9 @@
 services:
 
-  Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine:
+  Marvin255\RandomStringGenerator\RandomEngine\RandomEngine:
     class: Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine
 
-  Marvin255\RandomStringGenerator\RandomEngine\RandomEngine:
-    alias: Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine
-
-  Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator:
+  Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator:
     class: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
     arguments:
       - '@Marvin255\RandomStringGenerator\RandomEngine\RandomEngine'
-
-  Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator:
-    alias: Marvin255\RandomStringGenerator\RandomStringGenerator\BasicRandomStringGenerator
