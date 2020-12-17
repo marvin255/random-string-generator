@@ -9,6 +9,6 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 /**
  * Bundle object.
  */
-class RandomStringGeneratorBundle extends Bundle
+class Marvin255RandomStringGeneratorBundle extends Bundle
 {
 }

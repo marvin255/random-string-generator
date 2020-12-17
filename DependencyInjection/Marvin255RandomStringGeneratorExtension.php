@@ -13,7 +13,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Object tha defines all bundle data.
  */
-class RandomStringGeneratorExtension extends Extension
+class Marvin255RandomStringGeneratorExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -52,7 +52,6 @@ class RandomStringGeneratorExtension extends Extension
     {
         $configDir = dirname(__DIR__) . '/Resources/config';
         $loader = new YamlFileLoader($container, new FileLocator($configDir));
-
         $loader->load('services.yaml');
     }
 }

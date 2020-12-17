@@ -23,6 +23,13 @@ class Configuration implements ConfigurationInterface
     {
         $treeBuilder = new TreeBuilder(self::CONFIG_NAME);
         $treeBuilder->getRootNode()
+            ->children()
+                ->booleanNode('dummy')
+                    ->defaultValue(false)
+                ->end()
+                ->scalarNode('dummy_string')
+                    ->defaultValue('')
+                ->end()
             ->end()
         ;
 

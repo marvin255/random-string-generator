@@ -2,7 +2,8 @@ version: '3.7'
 
 services:
     php:
-        container_name: rendom-string-generator-php
+        container_name: random-string-generator-php
+        image: random-string-generator-php
         restart: 'no'
         build:
             context: php
