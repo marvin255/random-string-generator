@@ -9,7 +9,12 @@ on:
 jobs:
   build:
 
+    name: Random string generator (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php-versions: ['7.4']
 
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +26,6 @@ jobs:
       id: composer-cache
       uses: actions/cache@v2
       with:
-        php-version: '7.4'
         path: vendor
         key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
@@ -30,15 +34,9 @@ jobs:
     - name: Install dependencies
       if: steps.composer-cache.outputs.cache-hit != 'true'
       run: composer install --prefer-dist --no-progress --no-suggest
-      with:
-          php-version: '7.4'
 
     - name: Run test suite
       run: composer run-script test
-      with:
-          php-version: '7.4'
 
     - name: Run linters
       run: composer run-script linter
-      with:
-          php-version: '7.4'
