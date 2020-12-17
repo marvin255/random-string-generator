@@ -12,7 +12,7 @@ jobs:
     name: Random string generator (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false
+      fail-fast: true
       matrix:
         php-versions: ['7.4']
 
