@@ -23,7 +23,12 @@ class Marvin255RandomStringGeneratorExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $this->loadConfigurationToContainer($configs, $container);
-        $this->loadServicesToContainer($container);
+
+        if (!empty($configs[0]['dummy'])) {
+            $this->loadServicesToContainer($container, 'dummy');
+        } else {
+            $this->loadServicesToContainer($container);
+        }
     }
 
     /**
@@ -45,13 +50,14 @@ class Marvin255RandomStringGeneratorExtension extends Extension
      * Register bundle services.
      *
      * @param ContainerBuilder $container
+     * @param string           $type
      *
      * @throws Exception
      */
-    protected function loadServicesToContainer(ContainerBuilder $container): void
+    protected function loadServicesToContainer(ContainerBuilder $container, string $type = 'services'): void
     {
         $configDir = dirname(__DIR__) . '/Resources/config';
         $loader = new YamlFileLoader($container, new FileLocator($configDir));
-        $loader->load('services.yaml');
+        $loader->load("{$type}.yaml");
     }
 }
