@@ -9,10 +9,23 @@ on:
 jobs:
   build:
 
+    name: Random string generator (PHP ${{ matrix.php-versions }})
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        php-versions: ['7.4']
 
     steps:
     - uses: actions/checkout@v2
+
+    - name: Install PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php-versions }}
+
+    - name: Check PHP Version
+      run: php -v
 
     - name: Validate composer.json and composer.lock
       run: composer validate
@@ -32,6 +45,6 @@ jobs:
 
     - name: Run test suite
       run: composer run-script test
-      
+
     - name: Run linters
       run: composer run-script linter

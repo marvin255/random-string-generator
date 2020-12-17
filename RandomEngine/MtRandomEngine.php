@@ -10,7 +10,7 @@ namespace Marvin255\RandomStringGenerator\RandomEngine;
 class MtRandomEngine implements RandomEngine
 {
     /**
-     * @inheritDoc
+     * {@inheritDoc}
      */
     public function rand(int $min = 0, int $max = null): int
     {
