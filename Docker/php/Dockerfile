@@ -8,7 +8,6 @@ RUN set -xe && apk update && apk add --no-cache \
     libmcrypt-dev \
     libxml2-dev \
     libzip-dev \
-    postgresql-dev \
     pcre-dev \
     git \
     autoconf \
@@ -16,7 +15,7 @@ RUN set -xe && apk update && apk add --no-cache \
     make
 
 
-RUN docker-php-ext-install zip pcntl sockets \
+RUN docker-php-ext-install zip \
     && docker-php-source extract \
     && pecl install xdebug \
     && docker-php-ext-enable xdebug \
