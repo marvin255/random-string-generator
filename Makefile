@@ -13,21 +13,19 @@ build: ## Build container and install composer libs
 	$(docker_compose_bin) build --force-rm
 
 install: ## Install all data
-	$(php_container_bin) composer install
+	$(php_container_bin) composer update
 
 shell: ## Runs shell in container
 	$(php_container_bin) bash
 
 fixer: ## Run fixer to fix code style
-	$(php_container_bin) vendor/bin/php-cs-fixer fix -v
+	$(php_container_bin) composer run-script fixer
 
 linter: ## Run linter to check project
-	$(php_container_bin) vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation
-	$(php_container_bin) vendor/bin/phpcpd ./ --exclude vendor --exclude tests
-	$(php_container_bin) vendor/bin/psalm --show-info=true
+	$(php_container_bin) composer run-script linter
 
 test: ## Run tests
-	$(php_container_bin) vendor/bin/phpunit --configuration phpunit.xml.dist
+	$(php_container_bin) composer run-script test
 
 coverage: ## Run tests with coverage
-	$(php_container_bin) vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-html=Tests/coverage
+	$(php_container_bin) composer run-script coverage

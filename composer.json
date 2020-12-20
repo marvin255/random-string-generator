@@ -24,8 +24,9 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit --configuration phpunit.xml.dist",
-        "fixer": "vendor/bin/php-cs-fixer fix -v",
-        "linter": "vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation && vendor/bin/phpcpd ./ --exclude vendor --exclude tests && vendor/bin/psalm --show-info=true"
+        "coverage": "vendor/bin/phpunit --configuration phpunit.xml.dist --coverage-html=Tests/coverage",
+        "fixer": "vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v",
+        "linter": "vendor/bin/php-cs-fixer fix --config=.php_cs.dist -v --dry-run --stop-on-violation && vendor/bin/phpcpd ./ --exclude vendor && vendor/bin/psalm --show-info=true"
     },
     "repositories": [
         {
