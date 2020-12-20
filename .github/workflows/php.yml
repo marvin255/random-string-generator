@@ -1,4 +1,4 @@
-name: PHP Composer
+name: random_string_generator
 
 on:
   push:
