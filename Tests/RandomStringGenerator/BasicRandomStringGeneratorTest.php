@@ -87,7 +87,29 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $randLength = mb_strlen($rand);
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
-            $this->assertTrue(in_array($rand[$i], $vocabulary));
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertTrue(in_array($symbol, $vocabulary));
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function testStringWithUtf(): void
+    {
+        $length = 10;
+        $vocabulary = ['Ё', 'ю', '😁', '1'];
+
+        $engine = new MtRandomEngine();
+        $generator = new BasicRandomStringGenerator($engine);
+
+        $rand = $generator->string($length, implode('', $vocabulary));
+
+        $randLength = mb_strlen($rand);
+        $this->assertSame($length, $randLength);
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertTrue(in_array($symbol, $vocabulary));
         }
     }
 }

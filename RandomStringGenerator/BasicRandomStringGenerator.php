@@ -48,14 +48,27 @@ class BasicRandomStringGenerator implements RandomStringGenerator
      */
     public function string(int $length, string $vocabulary): string
     {
-        $vocabularyLength = mb_strlen($vocabulary) - 1;
+        $vocabularyArray = $this->splitVocabularyToArray($vocabulary);
+        $vocabularyLength = count($vocabularyArray) - 1;
 
         $string = '';
         for ($i = 0; $i < $length; ++$i) {
             $number = $this->randomEngine->rand(0, $vocabularyLength);
-            $string .= mb_substr($vocabulary, $number, 1);
+            $string .= $vocabularyArray[$number];
         }
 
         return $string;
+    }
+
+    /**
+     * Splits string to array of symbols.
+     *
+     * @param string $vocabulary
+     *
+     * @return array
+     */
+    private function splitVocabularyToArray(string $vocabulary): array
+    {
+        return mb_str_split($vocabulary);
     }
 }
