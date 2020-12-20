@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marvin255\RandomStringGenerator\RandomStringGenerator;
+namespace Marvin255\RandomStringGenerator\Generator;
 
 use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 

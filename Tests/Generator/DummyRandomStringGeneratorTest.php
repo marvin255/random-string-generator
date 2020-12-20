@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Marvin255\RandomStringGenerator\Tests\RandomStringGenerator;
+namespace Marvin255\RandomStringGenerator\Tests\Generator;
 
-use Marvin255\RandomStringGenerator\RandomStringGenerator\DummyRandomStringGenerator;
+use Marvin255\RandomStringGenerator\Generator\DummyRandomStringGenerator;
 use Marvin255\RandomStringGenerator\Tests\BaseCase;
 
 class DummyRandomStringGeneratorTest extends BaseCase
