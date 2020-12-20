@@ -7,5 +7,6 @@ composer.lock
 tests/coverage
 Docker/.env
 test.php
+benchmark.php
 
 .~lock.*
