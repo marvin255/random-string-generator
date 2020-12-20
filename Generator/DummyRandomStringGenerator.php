@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Marvin255\RandomStringGenerator\RandomStringGenerator;
+namespace Marvin255\RandomStringGenerator\Generator;
 
 /**
  * Generator that always return set string. Useful for test environment.

@@ -1,6 +1,6 @@
 services:
 
-  Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator:
-    class: Marvin255\RandomStringGenerator\RandomStringGenerator\DummyRandomStringGenerator
+  Marvin255\RandomStringGenerator\Generator\RandomStringGenerator:
+    class: Marvin255\RandomStringGenerator\Generator\DummyRandomStringGenerator
     arguments:
         - '%marvin255_random_string_generator.dummy_string%'

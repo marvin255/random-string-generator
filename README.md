@@ -19,7 +19,7 @@ Usage
 Inject the generator to service or controller via DI:
 
 ```php
-use Marvin255\RandomStringGenerator\RandomStringGenerator\RandomStringGenerator;
+use Marvin255\RandomStringGenerator\Generator\RandomStringGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SiteController extends AbstractController
