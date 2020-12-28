@@ -1,7 +1,7 @@
 services:
 
   Marvin255\RandomStringGenerator\RandomEngine\RandomEngine:
-    class: Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine
+    class: Marvin255\RandomStringGenerator\RandomEngine\RandomIntEngine
 
   Marvin255\RandomStringGenerator\Generator\RandomStringGenerator:
     class: Marvin255\RandomStringGenerator\Generator\BasicRandomStringGenerator
