@@ -74,6 +74,50 @@ class BasicRandomStringGeneratorTest extends BaseCase
     /**
      * @test
      */
+    public function testPassword(): void
+    {
+        $length = 10;
+
+        $engine = new MtRandomEngine();
+        $generator = new BasicRandomStringGenerator($engine);
+
+        $rand = $generator->password($length);
+
+        $randSplit = str_split($rand);
+        $randLength = mb_strlen($rand);
+        $vocabulary = str_split(Vocabulary::ALL);
+
+        $this->assertSame($length, $randLength);
+        $this->assertNotEmpty(
+            array_intersect(
+                str_split(Vocabulary::NUMERIC),
+                $randSplit
+            ),
+            'Need numeric'
+        );
+        $this->assertNotEmpty(
+            array_intersect(
+                str_split(Vocabulary::ALPHA),
+                $randSplit
+            ),
+            'Need alphabet symbol'
+        );
+        $this->assertNotEmpty(
+            array_intersect(
+                str_split(Vocabulary::SPECIAL),
+                $randSplit
+            ),
+            'Need special symbol'
+        );
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertTrue(in_array($symbol, $vocabulary));
+        }
+    }
+
+    /**
+     * @test
+     */
     public function testString(): void
     {
         $length = 10;
