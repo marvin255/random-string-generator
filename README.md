@@ -44,6 +44,7 @@ Use one of generation methods:
 $this->randomStringGenerator->alphanumeric(10);  // 10 symbols of latin alphabet or digits
 $this->randomStringGenerator->alpha(10);         // 10 symbols of latin alphabet
 $this->randomStringGenerator->numeric(10);       // 10 symbols of digits
+$this->randomStringGenerator->password(10);      // 10 symbols that can be used as password
 $this->randomStringGenerator->string(10, 'qwe'); // 10 symbols of provided vocabulary
 ```
 
