@@ -84,8 +84,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $rand = $generator->password($length);
 
         $randSplit = str_split($rand);
+        $randLength = mb_strlen($rand);
+        $vocabulary = str_split(Vocabulary::ALL);
 
-        $this->assertSame($length, mb_strlen($rand));
+        $this->assertSame($length, $randLength);
         $this->assertNotEmpty(
             array_intersect(
                 str_split(Vocabulary::NUMERIC),
@@ -107,6 +109,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
             ),
             'Need special symbol'
         );
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertTrue(in_array($symbol, $vocabulary));
+        }
     }
 
     /**
