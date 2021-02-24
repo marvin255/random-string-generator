@@ -15,4 +15,5 @@ class Vocabulary
     public const NUMERIC = '0123456789';
     public const ALPHA_NUMERIC = self::ALPHA . self::NUMERIC;
     public const SPECIAL = '_!#()[]{}-,.?';
+    public const ALL = self::ALPHA_UPPER . self::ALPHA_LOWER . self::NUMERIC . self::SPECIAL;
 }

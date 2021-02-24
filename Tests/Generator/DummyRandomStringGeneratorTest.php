@@ -57,6 +57,21 @@ class DummyRandomStringGeneratorTest extends BaseCase
     /**
      * @test
      */
+    public function testPassword(): void
+    {
+        $length = 10;
+        $string = '12345';
+
+        $generator = new DummyRandomStringGenerator($string);
+
+        $rand = $generator->password($length);
+
+        $this->assertSame($string, $rand);
+    }
+
+    /**
+     * @test
+     */
     public function testString(): void
     {
         $length = 10;

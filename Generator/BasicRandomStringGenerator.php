@@ -46,6 +46,40 @@ class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    public function password(int $length): string
+    {
+        $password = [
+            $this->string(1, Vocabulary::ALPHA_LOWER),
+        ];
+        --$length;
+
+        if ($length > 0) {
+            $password[] = $this->string(1, Vocabulary::ALPHA_UPPER);
+            --$length;
+        }
+
+        if ($length > 0) {
+            $password[] = $this->string(1, Vocabulary::NUMERIC);
+            --$length;
+        }
+
+        if ($length > 0) {
+            $password[] = $this->string(1, Vocabulary::SPECIAL);
+            --$length;
+        }
+
+        if ($length > 0) {
+            $password[] = $this->string($length, Vocabulary::ALL);
+        }
+
+        shuffle($password);
+
+        return implode('', $password);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function string(int $length, string $vocabulary): string
     {
         $vocabularyArray = $this->splitVocabularyToArray($vocabulary);

@@ -39,6 +39,15 @@ interface RandomStringGenerator
     public function numeric(int $length): string;
 
     /**
+     * Generates string which can be used as passport.
+     *
+     * @param int $length
+     *
+     * @return string
+     */
+    public function password(int $length): string;
+
+    /**
      * Generates random string using length and set vocabulary.
      *
      * @param int    $length
