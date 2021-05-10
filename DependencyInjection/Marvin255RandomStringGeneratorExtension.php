@@ -56,7 +56,7 @@ class Marvin255RandomStringGeneratorExtension extends Extension
      */
     protected function loadServicesToContainer(ContainerBuilder $container, string $type = 'services'): void
     {
-        $configDir = dirname(__DIR__) . '/Resources/config';
+        $configDir = \dirname(__DIR__) . '/Resources/config';
         $loader = new YamlFileLoader($container, new FileLocator($configDir));
         $loader->load("{$type}.yaml");
     }

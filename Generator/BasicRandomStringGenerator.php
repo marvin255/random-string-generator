@@ -83,7 +83,7 @@ class BasicRandomStringGenerator implements RandomStringGenerator
     public function string(int $length, string $vocabulary): string
     {
         $vocabularyArray = $this->splitVocabularyToArray($vocabulary);
-        $vocabularyLength = count($vocabularyArray) - 1;
+        $vocabularyLength = \count($vocabularyArray) - 1;
 
         $string = '';
         for ($i = 0; $i < $length; ++$i) {
