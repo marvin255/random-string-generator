@@ -7,6 +7,9 @@ namespace Marvin255\RandomStringGenerator\Tests\Generator;
 use Marvin255\RandomStringGenerator\Generator\DummyRandomStringGenerator;
 use Marvin255\RandomStringGenerator\Tests\BaseCase;
 
+/**
+ * @internal
+ */
 class DummyRandomStringGeneratorTest extends BaseCase
 {
     /**

@@ -9,6 +9,9 @@ use Marvin255\RandomStringGenerator\RandomEngine\MtRandomEngine;
 use Marvin255\RandomStringGenerator\Tests\BaseCase;
 use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 
+/**
+ * @internal
+ */
 class BasicRandomStringGeneratorTest extends BaseCase
 {
     /**
@@ -53,6 +56,8 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
+     *
+     * @psalm-suppress InvalidLiteralArgument
      */
     public function testNumeric(): void
     {
@@ -111,7 +116,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         );
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertTrue(in_array($symbol, $vocabulary));
+            $this->assertTrue(\in_array($symbol, $vocabulary));
         }
     }
 
@@ -132,7 +137,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertTrue(in_array($symbol, $vocabulary));
+            $this->assertTrue(\in_array($symbol, $vocabulary));
         }
     }
 
@@ -153,7 +158,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertTrue(in_array($symbol, $vocabulary));
+            $this->assertTrue(\in_array($symbol, $vocabulary));
         }
     }
 }

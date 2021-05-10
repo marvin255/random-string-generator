@@ -7,6 +7,9 @@ namespace Marvin255\RandomStringGenerator\Tests\RandomEngine;
 use Marvin255\RandomStringGenerator\RandomEngine\RandomIntEngine;
 use Marvin255\RandomStringGenerator\Tests\BaseCase;
 
+/**
+ * @internal
+ */
 class RandomIntEngineTest extends BaseCase
 {
     /**
