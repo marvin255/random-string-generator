@@ -18,6 +18,7 @@ class Configuration implements ConfigurationInterface
      * {@inheritdoc}
      *
      * @psalm-suppress UndefinedMethod
+     * @psalm-suppress MixedMethodCall
      */
     public function getConfigTreeBuilder(): TreeBuilder
     {

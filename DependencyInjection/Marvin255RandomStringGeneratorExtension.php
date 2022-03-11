@@ -40,6 +40,7 @@ class Marvin255RandomStringGeneratorExtension extends Extension
     protected function loadConfigurationToContainer(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
+        /** @var array<string, int|string|float|bool> */
         $config = $this->processConfiguration($configuration, $configs);
         foreach ($config as $key => $value) {
             $container->setParameter(Configuration::CONFIG_NAME . '.' . $key, $value);
