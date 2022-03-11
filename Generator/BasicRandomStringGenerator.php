@@ -99,7 +99,7 @@ class BasicRandomStringGenerator implements RandomStringGenerator
      *
      * @param string $vocabulary
      *
-     * @return array
+     * @return string[]
      */
     private function splitVocabularyToArray(string $vocabulary): array
     {
