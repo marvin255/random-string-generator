@@ -222,6 +222,24 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
+     */
+    public function testPasswordShuffle(): void
+    {
+        $engine = new MtRandomEngine();
+        $generator = new BasicRandomStringGenerator($engine);
+
+        $rand = $generator->password(4);
+
+        $is1Symbol = strpos(Vocabulary::ALPHA_LOWER, mb_substr($rand, 0, 1));
+        $is2Symbol = strpos(Vocabulary::ALPHA_UPPER, mb_substr($rand, 1, 1));
+        $is3Symbol = strpos(Vocabulary::NUMERIC, mb_substr($rand, 2, 1));
+        $is4Symbol = strpos(Vocabulary::SPECIAL, mb_substr($rand, 3, 1));
+
+        $this->assertFalse($is1Symbol && $is2Symbol && $is3Symbol && $is4Symbol);
+    }
+
+    /**
+     * @test
      *
      * @dataProvider provideString
      */
