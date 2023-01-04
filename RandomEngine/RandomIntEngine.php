@@ -7,15 +7,13 @@ namespace Marvin255\RandomStringGenerator\RandomEngine;
 /**
  * Object that uses random_int function to create random numbers.
  */
-class RandomIntEngine implements RandomEngine
+final class RandomIntEngine implements RandomEngine
 {
     /**
      * {@inheritDoc}
      */
-    public function rand(int $min = 0, int $max = null): int
+    public function rand(int $min = RandomEngine::RAND_MIN, int $max = RandomEngine::RAND_MAX): int
     {
-        $max = $max === null ? mt_getrandmax() : $max;
-
         return random_int($min, $max);
     }
 }

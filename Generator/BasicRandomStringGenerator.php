@@ -10,7 +10,7 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 /**
  * Basic random string generator.
  */
-class BasicRandomStringGenerator implements RandomStringGenerator
+final class BasicRandomStringGenerator implements RandomStringGenerator
 {
     private RandomEngine $randomEngine;
 
@@ -82,27 +82,23 @@ class BasicRandomStringGenerator implements RandomStringGenerator
      */
     public function string(int $length, string $vocabulary): string
     {
-        $vocabularyArray = $this->splitVocabularyToArray($vocabulary);
+        if ($length < 0) {
+            throw new \InvalidArgumentException('Length can be less than zero');
+        }
+
+        if ($vocabulary === '') {
+            throw new \InvalidArgumentException('Vocabulary must be a non empty string');
+        }
+
+        $vocabularyArray = mb_str_split($vocabulary);
         $vocabularyLength = \count($vocabularyArray) - 1;
 
         $string = '';
         for ($i = 0; $i < $length; ++$i) {
-            $number = $this->randomEngine->rand(0, $vocabularyLength);
+            $number = $this->randomEngine->rand(RandomEngine::RAND_MIN, $vocabularyLength);
             $string .= $vocabularyArray[$number];
         }
 
         return $string;
-    }
-
-    /**
-     * Splits string to array of symbols.
-     *
-     * @param string $vocabulary
-     *
-     * @return string[]
-     */
-    private function splitVocabularyToArray(string $vocabulary): array
-    {
-        return mb_str_split($vocabulary);
     }
 }

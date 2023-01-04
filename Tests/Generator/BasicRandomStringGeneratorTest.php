@@ -14,66 +14,147 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
  */
 class BasicRandomStringGeneratorTest extends BaseCase
 {
+    private const MESSAGE_ZERO_LENGTH = 'Length can be less than zero';
+    private const MESSAGE_EMTY_VOCABULARY = 'Vocabulary must be a non empty string';
+
     /**
      * @test
+     *
+     * @dataProvider provideAlphanumeric
      */
-    public function testAlphanumeric(): void
+    public function testAlphanumeric(int $length, ?\Exception $e = null): void
     {
-        $length = 10;
-
+        $vocabulary = Vocabulary::ALPHA_NUMERIC;
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
 
-        $rand = $generator->alphanumeric($length);
+        if ($e) {
+            $this->expectExceptionObject($e);
+        }
 
+        $rand = $generator->alphanumeric($length);
         $randLength = mb_strlen($rand);
-        $this->assertSame($length, $randLength);
-        for ($i = 0; $i < $randLength; ++$i) {
-            $inVocabulary = mb_strpos(Vocabulary::ALPHA_NUMERIC, $rand[$i]) !== false;
-            $this->assertTrue($inVocabulary);
+
+        if (!$e) {
+            $this->assertSame($length, $randLength);
+            for ($i = 0; $i < $randLength; ++$i) {
+                $symbol = mb_substr($rand, $i, 1);
+                $this->assertNotFalse(strpos($vocabulary, $symbol));
+            }
         }
     }
 
-    /**
-     * @test
-     */
-    public function testAlpha(): void
+    public function provideAlphanumeric(): array
     {
-        $length = 10;
-
-        $engine = new MtRandomEngine();
-        $generator = new BasicRandomStringGenerator($engine);
-
-        $rand = $generator->alpha($length);
-
-        $randLength = mb_strlen($rand);
-        $this->assertSame($length, $randLength);
-        for ($i = 0; $i < $randLength; ++$i) {
-            $inVocabulary = mb_strpos(Vocabulary::ALPHA, $rand[$i]) !== false;
-            $this->assertTrue($inVocabulary);
-        }
+        return [
+            'one symbol' => [
+                1,
+            ],
+            'zero symbols' => [
+                0,
+            ],
+            'more symbols' => [
+                10,
+            ],
+            'negative length exception' => [
+                -1,
+                new \InvalidArgumentException(self::MESSAGE_ZERO_LENGTH),
+            ],
+        ];
     }
 
     /**
      * @test
      *
-     * @psalm-suppress InvalidLiteralArgument
+     * @dataProvider provideAlpha
      */
-    public function testNumeric(): void
+    public function testAlpha(int $length, ?\Exception $e = null): void
     {
-        $length = 10;
-
+        $vocabulary = Vocabulary::ALPHA;
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
 
-        $rand = $generator->numeric($length);
-
-        $randLength = mb_strlen($rand);
-        $this->assertSame($length, $randLength);
-        for ($i = 0; $i < $randLength; ++$i) {
-            $inVocabulary = mb_strpos(Vocabulary::NUMERIC, $rand[$i]) !== false;
-            $this->assertTrue($inVocabulary);
+        if ($e) {
+            $this->expectExceptionObject($e);
         }
+
+        $rand = $generator->alpha($length);
+        $randLength = mb_strlen($rand);
+
+        if (!$e) {
+            $this->assertSame($length, $randLength);
+            for ($i = 0; $i < $randLength; ++$i) {
+                $symbol = mb_substr($rand, $i, 1);
+                $this->assertNotFalse(strpos($vocabulary, $symbol));
+            }
+        }
+    }
+
+    public function provideAlpha(): array
+    {
+        return [
+            'one symbol' => [
+                1,
+            ],
+            'zero symbols' => [
+                0,
+            ],
+            'more symbols' => [
+                10,
+            ],
+            'negative length exception' => [
+                -1,
+                new \InvalidArgumentException(self::MESSAGE_ZERO_LENGTH),
+            ],
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider provideNumeric
+     *
+     * @psalm-suppress InvalidLiteralArgument
+     */
+    public function testNumeric(int $length, ?\Exception $e = null): void
+    {
+        $vocabulary = Vocabulary::NUMERIC;
+        $engine = new MtRandomEngine();
+        $generator = new BasicRandomStringGenerator($engine);
+
+        if ($e) {
+            $this->expectExceptionObject($e);
+        }
+
+        $rand = $generator->numeric($length);
+        $randLength = mb_strlen($rand);
+
+        if (!$e) {
+            $this->assertSame($length, $randLength);
+            for ($i = 0; $i < $randLength; ++$i) {
+                $symbol = mb_substr($rand, $i, 1);
+                $this->assertNotFalse(strpos($vocabulary, $symbol));
+            }
+        }
+    }
+
+    public function provideNumeric(): array
+    {
+        return [
+            'one symbol' => [
+                1,
+            ],
+            'zero symbols' => [
+                0,
+            ],
+            'more symbols' => [
+                10,
+            ],
+            'negative length exception' => [
+                -1,
+                new \InvalidArgumentException(self::MESSAGE_ZERO_LENGTH),
+            ],
+        ];
     }
 
     /**
@@ -122,43 +203,63 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
+     *
+     * @dataProvider provideString
      */
-    public function testString(): void
+    public function testString(int $length, string $vocabulary, ?\Exception $e = null): void
     {
-        $length = 10;
-        $vocabulary = ['1', 'b', '_'];
-
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
 
-        $rand = $generator->string($length, implode('', $vocabulary));
+        if ($e) {
+            $this->expectExceptionObject($e);
+        }
 
+        $rand = $generator->string($length, $vocabulary);
         $randLength = mb_strlen($rand);
-        $this->assertSame($length, $randLength);
-        for ($i = 0; $i < $randLength; ++$i) {
-            $symbol = mb_substr($rand, $i, 1);
-            $this->assertTrue(\in_array($symbol, $vocabulary));
+
+        if (!$e) {
+            $this->assertSame($length, $randLength);
+            for ($i = 0; $i < $randLength; ++$i) {
+                $symbol = mb_substr($rand, $i, 1);
+                $this->assertNotFalse(strpos($vocabulary, $symbol));
+            }
         }
     }
 
-    /**
-     * @test
-     */
-    public function testStringWithUtf(): void
+    public function provideString(): array
     {
-        $length = 10;
-        $vocabulary = ['Ё', 'ю', '😁', '1'];
-
-        $engine = new MtRandomEngine();
-        $generator = new BasicRandomStringGenerator($engine);
-
-        $rand = $generator->string($length, implode('', $vocabulary));
-
-        $randLength = mb_strlen($rand);
-        $this->assertSame($length, $randLength);
-        for ($i = 0; $i < $randLength; ++$i) {
-            $symbol = mb_substr($rand, $i, 1);
-            $this->assertTrue(\in_array($symbol, $vocabulary));
-        }
+        return [
+            'random vocabulary' => [
+                10,
+                '1b_',
+            ],
+            'utf vocabulary' => [
+                10,
+                'Ёю😁1',
+            ],
+            'one symbol' => [
+                1,
+                '123',
+            ],
+            'zero symbols' => [
+                0,
+                '123',
+            ],
+            'vocabulary with one symbol' => [
+                10,
+                '1',
+            ],
+            'negative length' => [
+                -10,
+                '1',
+                new \InvalidArgumentException(self::MESSAGE_ZERO_LENGTH),
+            ],
+            'empty vocabulary' => [
+                10,
+                '',
+                new \InvalidArgumentException(self::MESSAGE_EMTY_VOCABULARY),
+            ],
+        ];
     }
 }

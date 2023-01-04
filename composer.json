@@ -13,7 +13,8 @@
         "symfony/phpunit-bridge": "^5.0|^6.0",
         "friendsofphp/php-cs-fixer": "^3.0",
         "sebastian/phpcpd": "^6.0",
-        "vimeo/psalm": "^4.0|^5.0"
+        "vimeo/psalm": "^4.0|^5.0",
+        "infection/infection": "^0.26.16"
     },
     "autoload": {
         "psr-4": {
@@ -37,6 +38,14 @@
             "vendor/bin/php-cs-fixer fix --config=.php-cs-fixer.dist.php -vv --allow-risky=yes --dry-run --stop-on-violation",
             "vendor/bin/phpcpd ./ --exclude vendor",
             "vendor/bin/psalm --show-info=true --php-version=$(php -r \"echo phpversion();\")"
+        ],
+        "infection": [
+            "vendor/bin/infection --min-msi=100 --min-covered-msi=100 --threads=4"
         ]
+    },
+    "config": {
+        "allow-plugins": {
+            "infection/extension-installer": true
+        }
     }
 }

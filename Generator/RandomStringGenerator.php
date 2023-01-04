@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Marvin255\RandomStringGenerator\Generator;
 
-use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
-
 /**
  * Interface for object that can generate random string.
  */
@@ -17,6 +15,8 @@ interface RandomStringGenerator
      * @param int $length
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function alphanumeric(int $length): string;
 
@@ -26,6 +26,8 @@ interface RandomStringGenerator
      * @param int $length
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function alpha(int $length): string;
 
@@ -35,6 +37,8 @@ interface RandomStringGenerator
      * @param int $length
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function numeric(int $length): string;
 
@@ -44,6 +48,8 @@ interface RandomStringGenerator
      * @param int $length
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function password(int $length): string;
 
@@ -54,6 +60,8 @@ interface RandomStringGenerator
      * @param string $vocabulary
      *
      * @return string
+     *
+     * @throws \InvalidArgumentException
      */
     public function string(int $length, string $vocabulary): string;
 }
