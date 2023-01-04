@@ -228,7 +228,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
 
-        $rand = $generator->password(4);
+        $rand = $generator->password(20);
 
         $is1Symbol = strpos(Vocabulary::ALPHA_LOWER, mb_substr($rand, 0, 1));
         $is2Symbol = strpos(Vocabulary::ALPHA_UPPER, mb_substr($rand, 1, 1));
@@ -258,7 +258,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertNotFalse(strpos($vocabulary, $symbol));
+            $this->assertNotFalse(mb_strpos($vocabulary, $symbol));
         }
     }
 
@@ -272,6 +272,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
             'utf vocabulary' => [
                 10,
                 'Ёю😁1',
+            ],
+            'utf vocabulary one symbol' => [
+                1,
+                '😁',
             ],
             'one symbol' => [
                 1,

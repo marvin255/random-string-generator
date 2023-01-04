@@ -10,6 +10,11 @@
         "text": "infection.log"
     },
     "mutators": {
-        "@default": true
+        "@default": true,
+        "GreaterThan": {
+            "ignore": [
+                "Marvin255\\RandomStringGenerator\\Generator\\BasicRandomStringGenerator::password"
+            ]
+        }
     }
 }
