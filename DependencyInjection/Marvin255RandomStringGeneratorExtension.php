@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Marvin255\RandomStringGenerator\DependencyInjection;
 
-use Exception;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
@@ -18,7 +17,7 @@ class Marvin255RandomStringGeneratorExtension extends Extension
     /**
      * {@inheritDoc}
      *
-     * @throws Exception
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -53,7 +52,7 @@ class Marvin255RandomStringGeneratorExtension extends Extension
      * @param ContainerBuilder $container
      * @param string           $type
      *
-     * @throws Exception
+     * @throws \Exception
      */
     protected function loadServicesToContainer(ContainerBuilder $container, string $type = 'services'): void
     {
