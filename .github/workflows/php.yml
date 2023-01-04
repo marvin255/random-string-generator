@@ -8,29 +8,29 @@ on:
 
 jobs:
     lint_and_test:
-    name: Lint and test (PHP ${{ matrix.php-versions }})
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: true
-      matrix:
-        php-versions: ['7.4', '8.0', '8.1']
-    steps:
-    - uses: actions/checkout@v2
-    - name: Install PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php-versions }}
-    - name: Get composer cache directory
-      id: composer-cache-dir
-      run: echo "::set-output name=dir::$(composer config cache-files-dir)"
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: ${{ steps.composer-cache-dir.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
-    - name: Run linters
-      run: composer run-script linter
-    - name: Run test suite
-      run: composer run-script test
+      name: Lint and test (PHP ${{ matrix.php-versions }})
+      runs-on: ubuntu-latest
+      strategy:
+        fail-fast: true
+        matrix:
+          php-versions: ['7.4', '8.0', '8.1']
+      steps:
+      - uses: actions/checkout@v2
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+      - name: Get composer cache directory
+        id: composer-cache-dir
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composer-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress
+      - name: Run linters
+        run: composer run-script linter
+      - name: Run test suite
+        run: composer run-script test
