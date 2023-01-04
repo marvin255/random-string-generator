@@ -12,7 +12,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Object tha defines all bundle data.
  */
-class Marvin255RandomStringGeneratorExtension extends Extension
+final class Marvin255RandomStringGeneratorExtension extends Extension
 {
     /**
      * {@inheritDoc}

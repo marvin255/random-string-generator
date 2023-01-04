@@ -9,7 +9,7 @@ namespace Marvin255\RandomStringGenerator\Generator;
  */
 final class DummyRandomStringGenerator implements RandomStringGenerator
 {
-    private string $dummyString;
+    private readonly string $dummyString;
 
     public function __construct(string $dummyString)
     {

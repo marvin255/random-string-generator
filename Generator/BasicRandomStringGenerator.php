@@ -12,7 +12,7 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
  */
 final class BasicRandomStringGenerator implements RandomStringGenerator
 {
-    private RandomEngine $randomEngine;
+    private readonly RandomEngine $randomEngine;
 
     public function __construct(RandomEngine $randomEngine)
     {
