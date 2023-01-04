@@ -9,6 +9,8 @@ namespace Marvin255\RandomStringGenerator\Generator;
  */
 interface RandomStringGenerator
 {
+    public const MIN_PASSWORD_LENGTH = 4;
+
     /**
      * Generates string consists of random digits and latin symbols.
      *

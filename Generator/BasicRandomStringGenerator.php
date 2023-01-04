@@ -48,28 +48,21 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
      */
     public function password(int $length): string
     {
+        if ($length < self::MIN_PASSWORD_LENGTH) {
+            throw new \InvalidArgumentException('Length can be less than four');
+        }
+
         $password = [
             $this->string(1, Vocabulary::ALPHA_LOWER),
+            $this->string(1, Vocabulary::ALPHA_UPPER),
+            $this->string(1, Vocabulary::NUMERIC),
+            $this->string(1, Vocabulary::SPECIAL),
         ];
-        --$length;
 
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::ALPHA_UPPER);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::NUMERIC);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::SPECIAL);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string($length, Vocabulary::ALL);
+        if ($length > self::MIN_PASSWORD_LENGTH) {
+            $count = $length - self::MIN_PASSWORD_LENGTH;
+            $additionalSymbols = str_split($this->string($count, Vocabulary::ALL));
+            $password = array_merge($password, $additionalSymbols);
         }
 
         shuffle($password);

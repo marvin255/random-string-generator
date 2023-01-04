@@ -16,6 +16,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
 {
     private const MESSAGE_ZERO_LENGTH = 'Length can be less than zero';
     private const MESSAGE_EMTY_VOCABULARY = 'Vocabulary must be a non empty string';
+    private const MESSAGE_LESS_THAN_MIN_LENGTH = 'Length can be less than four';
 
     /**
      * @test
@@ -35,12 +36,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $rand = $generator->alphanumeric($length);
         $randLength = mb_strlen($rand);
 
-        if (!$e) {
-            $this->assertSame($length, $randLength);
-            for ($i = 0; $i < $randLength; ++$i) {
-                $symbol = mb_substr($rand, $i, 1);
-                $this->assertNotFalse(strpos($vocabulary, $symbol));
-            }
+        $this->assertSame($length, $randLength);
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertNotFalse(strpos($vocabulary, $symbol));
         }
     }
 
@@ -81,12 +80,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $rand = $generator->alpha($length);
         $randLength = mb_strlen($rand);
 
-        if (!$e) {
-            $this->assertSame($length, $randLength);
-            for ($i = 0; $i < $randLength; ++$i) {
-                $symbol = mb_substr($rand, $i, 1);
-                $this->assertNotFalse(strpos($vocabulary, $symbol));
-            }
+        $this->assertSame($length, $randLength);
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertNotFalse(strpos($vocabulary, $symbol));
         }
     }
 
@@ -129,12 +126,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $rand = $generator->numeric($length);
         $randLength = mb_strlen($rand);
 
-        if (!$e) {
-            $this->assertSame($length, $randLength);
-            for ($i = 0; $i < $randLength; ++$i) {
-                $symbol = mb_substr($rand, $i, 1);
-                $this->assertNotFalse(strpos($vocabulary, $symbol));
-            }
+        $this->assertSame($length, $randLength);
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertNotFalse(strpos($vocabulary, $symbol));
         }
     }
 
@@ -159,13 +154,17 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
+     *
+     * @dataProvider providePassword
      */
-    public function testPassword(): void
+    public function testPassword(int $length, ?\Exception $e = null): void
     {
-        $length = 10;
-
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
+
+        if ($e) {
+            $this->expectExceptionObject($e);
+        }
 
         $rand = $generator->password($length);
 
@@ -201,6 +200,26 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
+    public function providePassword(): array
+    {
+        return [
+            'more symbols' => [
+                10,
+            ],
+            'min required symbols' => [
+                4,
+            ],
+            'negative length' => [
+                -1,
+                new \InvalidArgumentException(self::MESSAGE_LESS_THAN_MIN_LENGTH),
+            ],
+            'length less tham min password' => [
+                3,
+                new \InvalidArgumentException(self::MESSAGE_LESS_THAN_MIN_LENGTH),
+            ],
+        ];
+    }
+
     /**
      * @test
      *
@@ -218,12 +237,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $rand = $generator->string($length, $vocabulary);
         $randLength = mb_strlen($rand);
 
-        if (!$e) {
-            $this->assertSame($length, $randLength);
-            for ($i = 0; $i < $randLength; ++$i) {
-                $symbol = mb_substr($rand, $i, 1);
-                $this->assertNotFalse(strpos($vocabulary, $symbol));
-            }
+        $this->assertSame($length, $randLength);
+        for ($i = 0; $i < $randLength; ++$i) {
+            $symbol = mb_substr($rand, $i, 1);
+            $this->assertNotFalse(strpos($vocabulary, $symbol));
         }
     }
 
