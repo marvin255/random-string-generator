@@ -10,9 +10,9 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 /**
  * Basic random string generator.
  */
-class BasicRandomStringGenerator implements RandomStringGenerator
+final class BasicRandomStringGenerator implements RandomStringGenerator
 {
-    private RandomEngine $randomEngine;
+    private readonly RandomEngine $randomEngine;
 
     public function __construct(RandomEngine $randomEngine)
     {
@@ -48,28 +48,21 @@ class BasicRandomStringGenerator implements RandomStringGenerator
      */
     public function password(int $length): string
     {
+        if ($length < self::MIN_PASSWORD_LENGTH) {
+            throw new \InvalidArgumentException('Length can be less than four');
+        }
+
         $password = [
             $this->string(1, Vocabulary::ALPHA_LOWER),
+            $this->string(1, Vocabulary::ALPHA_UPPER),
+            $this->string(1, Vocabulary::NUMERIC),
+            $this->string(1, Vocabulary::SPECIAL),
         ];
-        --$length;
 
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::ALPHA_UPPER);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::NUMERIC);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string(1, Vocabulary::SPECIAL);
-            --$length;
-        }
-
-        if ($length > 0) {
-            $password[] = $this->string($length, Vocabulary::ALL);
+        if ($length > self::MIN_PASSWORD_LENGTH) {
+            $count = $length - self::MIN_PASSWORD_LENGTH;
+            $additionalSymbols = str_split($this->string($count, Vocabulary::ALL));
+            $password = array_merge($password, $additionalSymbols);
         }
 
         shuffle($password);
@@ -82,27 +75,23 @@ class BasicRandomStringGenerator implements RandomStringGenerator
      */
     public function string(int $length, string $vocabulary): string
     {
-        $vocabularyArray = $this->splitVocabularyToArray($vocabulary);
+        if ($length < 0) {
+            throw new \InvalidArgumentException('Length can be less than zero');
+        }
+
+        if ($vocabulary === '') {
+            throw new \InvalidArgumentException('Vocabulary must be a non empty string');
+        }
+
+        $vocabularyArray = mb_str_split($vocabulary);
         $vocabularyLength = \count($vocabularyArray) - 1;
 
         $string = '';
         for ($i = 0; $i < $length; ++$i) {
-            $number = $this->randomEngine->rand(0, $vocabularyLength);
+            $number = $this->randomEngine->rand(RandomEngine::RAND_MIN, $vocabularyLength);
             $string .= $vocabularyArray[$number];
         }
 
         return $string;
-    }
-
-    /**
-     * Splits string to array of symbols.
-     *
-     * @param string $vocabulary
-     *
-     * @return string[]
-     */
-    private function splitVocabularyToArray(string $vocabulary): array
-    {
-        return mb_str_split($vocabulary);
     }
 }

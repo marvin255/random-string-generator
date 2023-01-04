@@ -7,9 +7,9 @@ namespace Marvin255\RandomStringGenerator\Generator;
 /**
  * Generator that always return set string. Useful for test environment.
  */
-class DummyRandomStringGenerator implements RandomStringGenerator
+final class DummyRandomStringGenerator implements RandomStringGenerator
 {
-    private string $dummyString;
+    private readonly string $dummyString;
 
     public function __construct(string $dummyString)
     {

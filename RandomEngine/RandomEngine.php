@@ -9,13 +9,16 @@ namespace Marvin255\RandomStringGenerator\RandomEngine;
  */
 interface RandomEngine
 {
+    public const RAND_MIN = 0;
+    public const RAND_MAX = 2147483647;
+
     /**
      * Generates random number like mt_rand do.
      *
-     * @param int      $min
-     * @param int|null $max
+     * @param int $min
+     * @param int $max
      *
      * @return int
      */
-    public function rand(int $min = 0, int $max = null): int;
+    public function rand(int $min = self::RAND_MIN, int $max = self::RAND_MAX): int;
 }

@@ -1,0 +1,20 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "Generator",
+            "RandomEngine"
+        ]
+    },
+    "logs": {
+        "text": "infection.log"
+    },
+    "mutators": {
+        "@default": true,
+        "GreaterThan": {
+            "ignore": [
+                "Marvin255\\RandomStringGenerator\\Generator\\BasicRandomStringGenerator::password"
+            ]
+        }
+    }
+}
