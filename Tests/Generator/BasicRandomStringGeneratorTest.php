@@ -230,10 +230,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
         $rand = $generator->password(20);
 
-        $is1Symbol = mb_strpos(Vocabulary::ALPHA_LOWER, mb_substr($rand, 0, 1));
-        $is2Symbol = mb_strpos(Vocabulary::ALPHA_UPPER, mb_substr($rand, 1, 1));
-        $is3Symbol = mb_strpos(Vocabulary::NUMERIC, mb_substr($rand, 2, 1));
-        $is4Symbol = mb_strpos(Vocabulary::SPECIAL, mb_substr($rand, 3, 1));
+        $is1Symbol = mb_strpos(Vocabulary::ALPHA_LOWER, mb_substr($rand, 0, 1)) !== false;
+        $is2Symbol = mb_strpos(Vocabulary::ALPHA_UPPER, mb_substr($rand, 1, 1)) !== false;
+        $is3Symbol = mb_strpos(Vocabulary::NUMERIC, mb_substr($rand, 2, 1)) !== false;
+        $is4Symbol = mb_strpos(Vocabulary::SPECIAL, mb_substr($rand, 3, 1)) !== false;
 
         $this->assertFalse($is1Symbol && $is2Symbol && $is3Symbol && $is4Symbol);
     }
