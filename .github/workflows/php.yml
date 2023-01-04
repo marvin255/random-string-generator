@@ -91,6 +91,6 @@ jobs:
       - name: Check that module is auto enabled
         run: |
           cat $SYMFONY_FOLDER/config/bundles.php | grep "Marvin255RandomStringGeneratorBundle"
-      - name: Check that class name manager is registered
+      - name: Check that random string generator is registered
         run: |
           $SYMFONY_FOLDER/bin/console debug:container "Marvin255\\RandomStringGenerator\\Generator\\RandomStringGenerator"
