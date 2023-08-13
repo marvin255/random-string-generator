@@ -14,11 +14,6 @@ interface RandomEngine
 
     /**
      * Generates random number like mt_rand do.
-     *
-     * @param int $min
-     * @param int $max
-     *
-     * @return int
      */
     public function rand(int $min = self::RAND_MIN, int $max = self::RAND_MAX): int;
 }

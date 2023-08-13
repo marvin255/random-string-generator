@@ -73,7 +73,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
-    public function string(int $length, string $vocabulary): string
+    public function string(int $length, string|Vocabulary $vocabulary): string
     {
         if ($length < 0) {
             throw new \InvalidArgumentException('Length can be less than zero');
@@ -83,7 +83,8 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
             throw new \InvalidArgumentException('Vocabulary must be a non empty string');
         }
 
-        $vocabularyArray = mb_str_split($vocabulary);
+        $vocabularyString = \is_string($vocabulary) ? $vocabulary : $vocabulary->value;
+        $vocabularyArray = mb_str_split($vocabularyString);
         $vocabularyLength = \count($vocabularyArray) - 1;
 
         $string = '';

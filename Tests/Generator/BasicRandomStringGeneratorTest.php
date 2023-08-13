@@ -39,7 +39,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertNotFalse(strpos($vocabulary, $symbol));
+            $this->assertNotFalse(strpos($vocabulary->value, $symbol));
         }
     }
 
@@ -83,7 +83,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertNotFalse(strpos($vocabulary, $symbol));
+            $this->assertNotFalse(strpos($vocabulary->value, $symbol));
         }
     }
 
@@ -129,7 +129,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertNotFalse(strpos($vocabulary, $symbol));
+            $this->assertNotFalse(strpos($vocabulary->value, $symbol));
         }
     }
 
@@ -170,26 +170,26 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
         $randSplit = str_split($rand);
         $randLength = mb_strlen($rand);
-        $vocabulary = str_split(Vocabulary::ALL);
+        $vocabulary = str_split(Vocabulary::ALL->value);
 
         $this->assertSame($length, $randLength);
         $this->assertNotEmpty(
             array_intersect(
-                str_split(Vocabulary::NUMERIC),
+                str_split(Vocabulary::NUMERIC->value),
                 $randSplit
             ),
             'Need numeric'
         );
         $this->assertNotEmpty(
             array_intersect(
-                str_split(Vocabulary::ALPHA),
+                str_split(Vocabulary::ALPHA->value),
                 $randSplit
             ),
             'Need alphabet symbol'
         );
         $this->assertNotEmpty(
             array_intersect(
-                str_split(Vocabulary::SPECIAL),
+                str_split(Vocabulary::SPECIAL->value),
                 $randSplit
             ),
             'Need special symbol'
@@ -222,6 +222,8 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
+     *
+     * @psalm-suppress InvalidLiteralArgument
      */
     public function testPasswordShuffle(): void
     {
@@ -230,10 +232,15 @@ class BasicRandomStringGeneratorTest extends BaseCase
 
         $rand = $generator->password(20);
 
-        $is1Symbol = mb_strpos(Vocabulary::ALPHA_LOWER, mb_substr($rand, 0, 1)) !== false;
-        $is2Symbol = mb_strpos(Vocabulary::ALPHA_UPPER, mb_substr($rand, 1, 1)) !== false;
-        $is3Symbol = mb_strpos(Vocabulary::NUMERIC, mb_substr($rand, 2, 1)) !== false;
-        $is4Symbol = mb_strpos(Vocabulary::SPECIAL, mb_substr($rand, 3, 1)) !== false;
+        $alphaLower = Vocabulary::ALPHA_LOWER->value;
+        $alphaUpper = Vocabulary::ALPHA_UPPER->value;
+        $numeric = Vocabulary::NUMERIC->value;
+        $special = Vocabulary::SPECIAL->value;
+
+        $is1Symbol = mb_strpos($alphaLower, mb_substr($rand, 0, 1)) !== false;
+        $is2Symbol = mb_strpos($alphaUpper, mb_substr($rand, 1, 1)) !== false;
+        $is3Symbol = mb_strpos($numeric, mb_substr($rand, 2, 1)) !== false;
+        $is4Symbol = mb_strpos($special, mb_substr($rand, 3, 1)) !== false;
 
         $this->assertFalse($is1Symbol && $is2Symbol && $is3Symbol && $is4Symbol);
     }
@@ -243,7 +250,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideString
      */
-    public function testString(int $length, string $vocabulary, \Exception $e = null): void
+    public function testString(int $length, string|Vocabulary $vocabulary, \Exception $e = null): void
     {
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
@@ -258,7 +265,8 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertSame($length, $randLength);
         for ($i = 0; $i < $randLength; ++$i) {
             $symbol = mb_substr($rand, $i, 1);
-            $this->assertNotFalse(mb_strpos($vocabulary, $symbol));
+            $vocabularyString = \is_string($vocabulary) ? $vocabulary : $vocabulary->value;
+            $this->assertNotFalse(mb_strpos($vocabularyString, $symbol));
         }
     }
 
@@ -288,6 +296,10 @@ class BasicRandomStringGeneratorTest extends BaseCase
             'vocabulary with one symbol' => [
                 10,
                 '1',
+            ],
+            'vocabulary enum' => [
+                10,
+                Vocabulary::ALPHA_NUMERIC,
             ],
             'negative length' => [
                 -10,
