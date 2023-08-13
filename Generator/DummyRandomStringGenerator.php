@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace Marvin255\RandomStringGenerator\Generator;
 
+use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
+
 /**
  * Generator that always return set string. Useful for test environment.
+ *
+ * @internal
  */
 final class DummyRandomStringGenerator implements RandomStringGenerator
 {
-    private readonly string $dummyString;
-
-    public function __construct(string $dummyString)
+    public function __construct(private readonly string $dummyString)
     {
-        $this->dummyString = $dummyString;
     }
 
     /**
@@ -51,7 +52,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
-    public function string(int $length, string $vocabulary): string
+    public function string(int $length, string|Vocabulary $vocabulary): string
     {
         return $this->dummyString;
     }

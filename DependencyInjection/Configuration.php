@@ -9,6 +9,10 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 /**
  * Object for bundle configurations.
+ *
+ * @internal
+ *
+ * @psalm-api
  */
 final class Configuration implements ConfigurationInterface
 {

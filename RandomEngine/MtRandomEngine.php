@@ -6,6 +6,8 @@ namespace Marvin255\RandomStringGenerator\RandomEngine;
 
 /**
  * Object that uses mt_rand function to create random numbers.
+ *
+ * @internal
  */
 final class MtRandomEngine implements RandomEngine
 {

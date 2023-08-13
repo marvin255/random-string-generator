@@ -9,14 +9,13 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 
 /**
  * Basic random string generator.
+ *
+ * @internal
  */
 final class BasicRandomStringGenerator implements RandomStringGenerator
 {
-    private readonly RandomEngine $randomEngine;
-
-    public function __construct(RandomEngine $randomEngine)
+    public function __construct(private readonly RandomEngine $randomEngine)
     {
-        $this->randomEngine = $randomEngine;
     }
 
     /**
@@ -59,11 +58,12 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
             $this->string(1, Vocabulary::SPECIAL),
         ];
 
-        if ($length > self::MIN_PASSWORD_LENGTH) {
-            $count = $length - self::MIN_PASSWORD_LENGTH;
-            $additionalSymbols = str_split($this->string($count, Vocabulary::ALL));
-            $password = array_merge($password, $additionalSymbols);
-        }
+        $additionalString = $this->string(
+            $length - self::MIN_PASSWORD_LENGTH,
+            Vocabulary::ALL
+        );
+        $additionalSymbols = str_split($additionalString);
+        $password = array_merge($password, $additionalSymbols);
 
         shuffle($password);
 
@@ -73,7 +73,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
-    public function string(int $length, string $vocabulary): string
+    public function string(int $length, string|Vocabulary $vocabulary): string
     {
         if ($length < 0) {
             throw new \InvalidArgumentException('Length can be less than zero');
@@ -83,7 +83,8 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
             throw new \InvalidArgumentException('Vocabulary must be a non empty string');
         }
 
-        $vocabularyArray = mb_str_split($vocabulary);
+        $vocabularyString = \is_string($vocabulary) ? $vocabulary : $vocabulary->value;
+        $vocabularyArray = mb_str_split($vocabularyString);
         $vocabularyLength = \count($vocabularyArray) - 1;
 
         $string = '';
