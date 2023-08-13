@@ -58,11 +58,12 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
             $this->string(1, Vocabulary::SPECIAL),
         ];
 
-        if ($length > self::MIN_PASSWORD_LENGTH) {
-            $count = $length - self::MIN_PASSWORD_LENGTH;
-            $additionalSymbols = str_split($this->string($count, Vocabulary::ALL));
-            $password = array_merge($password, $additionalSymbols);
-        }
+        $additionalString = $this->string(
+            $length - self::MIN_PASSWORD_LENGTH,
+            Vocabulary::ALL
+        );
+        $additionalSymbols = str_split($additionalString);
+        $password = array_merge($password, $additionalSymbols);
 
         shuffle($password);
 
