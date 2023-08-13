@@ -7,7 +7,7 @@ namespace Marvin255\RandomStringGenerator\Vocabulary;
 /**
  * List of vocabularies to generate random strings.
  */
-class Vocabulary
+enum Vocabulary: string
 {
     public const ALPHA_UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     public const ALPHA_LOWER = 'abcdefghijklmnopqrstuvwxyz';
