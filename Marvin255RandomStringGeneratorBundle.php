@@ -8,7 +8,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
  * Bundle object.
+ *
+ * @psalm-api
  */
-class Marvin255RandomStringGeneratorBundle extends Bundle
+final class Marvin255RandomStringGeneratorBundle extends Bundle
 {
 }

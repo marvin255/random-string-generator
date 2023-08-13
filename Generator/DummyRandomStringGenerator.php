@@ -6,14 +6,13 @@ namespace Marvin255\RandomStringGenerator\Generator;
 
 /**
  * Generator that always return set string. Useful for test environment.
+ *
+ * @internal
  */
 final class DummyRandomStringGenerator implements RandomStringGenerator
 {
-    private readonly string $dummyString;
-
-    public function __construct(string $dummyString)
+    public function __construct(private readonly string $dummyString)
     {
-        $this->dummyString = $dummyString;
     }
 
     /**

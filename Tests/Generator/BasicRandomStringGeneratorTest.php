@@ -23,7 +23,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideAlphanumeric
      */
-    public function testAlphanumeric(int $length, ?\Exception $e = null): void
+    public function testAlphanumeric(int $length, \Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA_NUMERIC;
         $engine = new MtRandomEngine();
@@ -43,7 +43,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
-    public function provideAlphanumeric(): array
+    public static function provideAlphanumeric(): array
     {
         return [
             'one symbol' => [
@@ -67,7 +67,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideAlpha
      */
-    public function testAlpha(int $length, ?\Exception $e = null): void
+    public function testAlpha(int $length, \Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA;
         $engine = new MtRandomEngine();
@@ -87,7 +87,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
-    public function provideAlpha(): array
+    public static function provideAlpha(): array
     {
         return [
             'one symbol' => [
@@ -113,7 +113,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @psalm-suppress InvalidLiteralArgument
      */
-    public function testNumeric(int $length, ?\Exception $e = null): void
+    public function testNumeric(int $length, \Exception $e = null): void
     {
         $vocabulary = Vocabulary::NUMERIC;
         $engine = new MtRandomEngine();
@@ -133,7 +133,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
-    public function provideNumeric(): array
+    public static function provideNumeric(): array
     {
         return [
             'one symbol' => [
@@ -157,7 +157,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider providePassword
      */
-    public function testPassword(int $length, ?\Exception $e = null): void
+    public function testPassword(int $length, \Exception $e = null): void
     {
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
@@ -200,7 +200,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
-    public function providePassword(): array
+    public static function providePassword(): array
     {
         return [
             'more symbols' => [
@@ -243,7 +243,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideString
      */
-    public function testString(int $length, string $vocabulary, ?\Exception $e = null): void
+    public function testString(int $length, string $vocabulary, \Exception $e = null): void
     {
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
@@ -262,7 +262,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         }
     }
 
-    public function provideString(): array
+    public static function provideString(): array
     {
         return [
             'random vocabulary' => [

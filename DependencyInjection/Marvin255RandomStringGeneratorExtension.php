@@ -11,6 +11,10 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 /**
  * Object tha defines all bundle data.
+ *
+ * @internal
+ *
+ * @psalm-api
  */
 final class Marvin255RandomStringGeneratorExtension extends Extension
 {

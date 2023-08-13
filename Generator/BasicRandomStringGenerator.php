@@ -9,14 +9,13 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 
 /**
  * Basic random string generator.
+ *
+ * @internal
  */
 final class BasicRandomStringGenerator implements RandomStringGenerator
 {
-    private readonly RandomEngine $randomEngine;
-
-    public function __construct(RandomEngine $randomEngine)
+    public function __construct(private readonly RandomEngine $randomEngine)
     {
-        $this->randomEngine = $randomEngine;
     }
 
     /**
