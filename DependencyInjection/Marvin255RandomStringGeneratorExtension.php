@@ -29,6 +29,8 @@ final class Marvin255RandomStringGeneratorExtension extends Extension
 
         if (!empty($configs[0]['dummy'])) {
             $this->loadServicesToContainer($container, 'dummy');
+        } elseif (version_compare(\PHP_VERSION, '8.2.0') >= 0) {
+            $this->loadServicesToContainer($container, 'services_8_2');
         } else {
             $this->loadServicesToContainer($container);
         }
