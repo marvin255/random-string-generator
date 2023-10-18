@@ -1,0 +1,9 @@
+services:
+
+  Marvin255\RandomStringGenerator\RandomEngine\RandomEngine:
+    class: Marvin255\RandomStringGenerator\RandomEngine\RandomizerSecureEngine
+
+  Marvin255\RandomStringGenerator\Generator\RandomStringGenerator:
+    class: Marvin255\RandomStringGenerator\Generator\BasicRandomStringGenerator
+    arguments:
+      - '@Marvin255\RandomStringGenerator\RandomEngine\RandomEngine'
