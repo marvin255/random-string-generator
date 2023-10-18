@@ -11,6 +11,11 @@ use Random\Randomizer;
  * Object that uses Randomizer object with Random\Engine\Secure to create random numbers.
  *
  * @internal
+ * 
+ * @psalm-suppress UndefinedClass
+ * @psalm-suppress MixedAssignment
+ * @psalm-suppress MixedInferredReturnType
+ * @psalm-suppress MixedReturnStatement
  */
 final class RandomizerSecureEngine implements RandomEngine
 {
