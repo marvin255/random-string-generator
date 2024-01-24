@@ -1,4 +1,4 @@
-Random string generator for symfony
+Random string generator for Symfony
 ===================================
 
 [![Latest Stable Version](https://poser.pugx.org/marvin255/random-string-generator/v/stable.png)](https://packagist.org/packages/marvin255/random-string-generator)
@@ -9,19 +9,19 @@ Random string generator for symfony
 Installation
 ------------
 
-Install via composer:
+Install package via composer:
 
 ```bash
 composer req marvin255/random-string-generator
 ```
 
-Package will be configured automatically.
+It will be configured automatically.
 
 
 Usage
 -----
 
-Inject the generator to service or controller via DI:
+Inject the generator to a service or a controller via DI:
 
 ```php
 use Marvin255\RandomStringGenerator\Generator\RandomStringGenerator;
@@ -38,7 +38,7 @@ class SiteController extends AbstractController
 }
 ```
 
-Use one of generation methods:
+Use one of the generators methods:
 
 ```php
 $this->randomStringGenerator->alphanumeric(10);  // 10 symbols of latin alphabet or digits
@@ -49,14 +49,16 @@ $this->randomStringGenerator->string(10, 'qwe'); // 10 symbols of provided vocab
 ```
 
 
-Fake random strings for testing
--------------------------------
+Mock strings for testing
+------------------------
 
-For purposes of testing we need to be sure about the generated string. You can config bundle to return a prepared string for the test environment.
+Bundle can be configured to return a mock string in the test environment.
 
 ```yaml
 # config/packages/test/marvin255_random_string_generator.yaml
 marvin255_random_string_generator:
     dummy: true
-    dummy_string: some_fixed_string
+    dummy_string: mock_string
 ```
+
+All methods calls will return `mock_string`.
