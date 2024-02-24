@@ -277,13 +277,17 @@ class BasicRandomStringGeneratorTest extends BaseCase
                 10,
                 '1b_',
             ],
+            'different languages vocabulary' => [
+                10,
+                'ЙЯČáě日本',
+            ],
             'utf vocabulary' => [
                 10,
-                'Ёю😁1',
+                '⛱⛰⛴⛽',
             ],
             'utf vocabulary one symbol' => [
                 1,
-                '😁',
+                '⛱⛰⛴⛽',
             ],
             'one symbol' => [
                 1,
