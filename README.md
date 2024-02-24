@@ -29,11 +29,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class SiteController extends AbstractController
 {
-    private RandomStringGenerator $randomStringGenerator;
-
-    public function __construct(RandomStringGenerator $randomStringGenerator)
+    public function __construct(private readonly RandomStringGenerator $randomStringGenerator)
     {
-        $this->randomStringGenerator = $randomStringGenerator;
     }
 }
 ```
