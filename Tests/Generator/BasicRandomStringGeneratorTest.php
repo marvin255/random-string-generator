@@ -23,7 +23,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideAlphanumeric
      */
-    public function testAlphanumeric(int $length, \Exception $e = null): void
+    public function testAlphanumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA_NUMERIC;
         $engine = new MtRandomEngine();
@@ -67,7 +67,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideAlpha
      */
-    public function testAlpha(int $length, \Exception $e = null): void
+    public function testAlpha(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA;
         $engine = new MtRandomEngine();
@@ -113,7 +113,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @psalm-suppress InvalidLiteralArgument
      */
-    public function testNumeric(int $length, \Exception $e = null): void
+    public function testNumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::NUMERIC;
         $engine = new MtRandomEngine();
@@ -157,7 +157,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider providePassword
      */
-    public function testPassword(int $length, \Exception $e = null): void
+    public function testPassword(int $length, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
@@ -250,7 +250,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
      *
      * @dataProvider provideString
      */
-    public function testString(int $length, string|Vocabulary $vocabulary, \Exception $e = null): void
+    public function testString(int $length, string|Vocabulary $vocabulary, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();
         $generator = new BasicRandomStringGenerator($engine);
@@ -277,13 +277,17 @@ class BasicRandomStringGeneratorTest extends BaseCase
                 10,
                 '1b_',
             ],
+            'different languages vocabulary' => [
+                10,
+                'ЙЯČáě日本',
+            ],
             'utf vocabulary' => [
                 10,
-                'Ёю😁1',
+                '⛱⛰⛴⛽',
             ],
             'utf vocabulary one symbol' => [
                 1,
-                '😁',
+                '⛱⛰⛴⛽',
             ],
             'one symbol' => [
                 1,
