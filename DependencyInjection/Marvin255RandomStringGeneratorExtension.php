@@ -26,8 +26,9 @@ final class Marvin255RandomStringGeneratorExtension extends Extension
     public function load(array $configs, ContainerBuilder $container): void
     {
         $this->loadConfigurationToContainer($configs, $container);
+        $dummy = (bool) ($configs[0]['dummy'] ?? false);
 
-        if (!empty($configs[0]['dummy'])) {
+        if ($dummy) {
             $this->loadServicesToContainer($container, 'dummy');
         } elseif (version_compare(\PHP_VERSION, '8.2.0') >= 0) {
             $this->loadServicesToContainer($container, 'services_8_2');

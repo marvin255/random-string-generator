@@ -50,6 +50,8 @@ jobs:
             symfony-versions: '7.0'
           - php-versions: '8.3'
             symfony-versions: '7.0'
+          - php-versions: '8.3'
+            symfony-versions: '7.1'
     env:
       SYMFONY_FOLDER: symfony_app
     steps:
