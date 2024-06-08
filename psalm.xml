@@ -27,7 +27,7 @@
                 <directory name="./Tests"/>
             </errorLevel>
         </UnusedClass>
-        <MissingClassConstType errorLevel="suppressed"/>
+        <MissingClassConstType errorLevel="suppress"/>
     </issueHandlers>
 
     <plugins>
