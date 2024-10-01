@@ -1,9 +1,9 @@
 Random string generator for Symfony
 ===================================
 
-[![Latest Stable Version](https://poser.pugx.org/marvin255/random-string-generator/v/stable.png)](https://packagist.org/packages/marvin255/random-string-generator)
-[![Total Downloads](https://poser.pugx.org/marvin255/random-string-generator/downloads.png)](https://packagist.org/packages/marvin255/random-string-generator)
-[![License](https://poser.pugx.org/marvin255/random-string-generator/license.svg)](https://packagist.org/packages/marvin255/random-string-generator)
+[![Latest Stable Version](https://poser.pugx.org/marvin255/random-string-generator/v)](https://packagist.org/packages/marvin255/random-string-generator)
+[![Total Downloads](https://poser.pugx.org/marvin255/random-string-generator/downloads)](https://packagist.org/packages/marvin255/random-string-generator)
+[![License](https://poser.pugx.org/marvin255/random-string-generator/license)](https://packagist.org/packages/marvin255/random-string-generator)
 [![Build Status](https://github.com/marvin255/random-string-generator/workflows/random_string_generator/badge.svg)](https://github.com/marvin255/random-string-generator/actions?query=workflow%3A%22random_string_generator%22)
 
 Installation
