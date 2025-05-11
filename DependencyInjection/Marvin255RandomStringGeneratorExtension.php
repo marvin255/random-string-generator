@@ -23,6 +23,7 @@ final class Marvin255RandomStringGeneratorExtension extends Extension
      *
      * @throws \Exception
      */
+    #[\Override]
     public function load(array $configs, ContainerBuilder $container): void
     {
         $this->loadConfigurationToContainer($configs, $container);

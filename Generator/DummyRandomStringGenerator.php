@@ -20,6 +20,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function alphanumeric(int $length): string
     {
         return $this->dummyString;
@@ -28,6 +29,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function alpha(int $length): string
     {
         return $this->dummyString;
@@ -36,6 +38,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function numeric(int $length): string
     {
         return $this->dummyString;
@@ -44,6 +47,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function password(int $length): string
     {
         return $this->dummyString;
@@ -52,6 +56,7 @@ final class DummyRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function string(int $length, string|Vocabulary $vocabulary): string
     {
         return $this->dummyString;

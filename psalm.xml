@@ -29,7 +29,4 @@
         </UnusedClass>
         <MissingClassConstType errorLevel="suppress"/>
     </issueHandlers>
-
-    <plugins>
-    </plugins>
 </psalm>

@@ -14,6 +14,7 @@ final class MtRandomEngine implements RandomEngine
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function rand(int $min = RandomEngine::RAND_MIN, int $max = RandomEngine::RAND_MAX): int
     {
         return mt_rand($min, $max);

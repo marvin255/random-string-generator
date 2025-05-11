@@ -12,17 +12,13 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 /**
  * @internal
  */
-class BasicRandomStringGeneratorTest extends BaseCase
+final class BasicRandomStringGeneratorTest extends BaseCase
 {
     private const MESSAGE_ZERO_LENGTH = 'Length can be less than zero';
     private const MESSAGE_EMTY_VOCABULARY = 'Vocabulary must be a non empty string';
     private const MESSAGE_LESS_THAN_MIN_LENGTH = 'Length can be less than four';
 
-    /**
-     * @test
-     *
-     * @dataProvider provideAlphanumeric
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideAlphanumeric')]
     public function testAlphanumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA_NUMERIC;
@@ -62,11 +58,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provideAlpha
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideAlpha')]
     public function testAlpha(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA;
@@ -107,12 +99,9 @@ class BasicRandomStringGeneratorTest extends BaseCase
     }
 
     /**
-     * @test
-     *
-     * @dataProvider provideNumeric
-     *
      * @psalm-suppress InvalidLiteralArgument
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideNumeric')]
     public function testNumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::NUMERIC;
@@ -152,11 +141,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider providePassword
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('providePassword')]
     public function testPassword(int $length, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();
@@ -221,8 +206,6 @@ class BasicRandomStringGeneratorTest extends BaseCase
     }
 
     /**
-     * @test
-     *
      * @psalm-suppress InvalidLiteralArgument
      */
     public function testPasswordShuffle(): void
@@ -245,11 +228,7 @@ class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertFalse($is1Symbol && $is2Symbol && $is3Symbol && $is4Symbol);
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider provideString
-     */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideString')]
     public function testString(int $length, string|Vocabulary $vocabulary, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();

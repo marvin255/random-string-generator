@@ -10,11 +10,8 @@ use Marvin255\RandomStringGenerator\Tests\BaseCase;
 /**
  * @internal
  */
-class DummyRandomStringGeneratorTest extends BaseCase
+final class DummyRandomStringGeneratorTest extends BaseCase
 {
-    /**
-     * @test
-     */
     public function testAlphanumeric(): void
     {
         $length = 10;
@@ -27,9 +24,6 @@ class DummyRandomStringGeneratorTest extends BaseCase
         $this->assertSame($string, $rand);
     }
 
-    /**
-     * @test
-     */
     public function testAlpha(): void
     {
         $length = 10;
@@ -42,9 +36,6 @@ class DummyRandomStringGeneratorTest extends BaseCase
         $this->assertSame($string, $rand);
     }
 
-    /**
-     * @test
-     */
     public function testNumeric(): void
     {
         $length = 10;
@@ -57,9 +48,6 @@ class DummyRandomStringGeneratorTest extends BaseCase
         $this->assertSame($string, $rand);
     }
 
-    /**
-     * @test
-     */
     public function testPassword(): void
     {
         $length = 10;
@@ -72,9 +60,6 @@ class DummyRandomStringGeneratorTest extends BaseCase
         $this->assertSame($string, $rand);
     }
 
-    /**
-     * @test
-     */
     public function testString(): void
     {
         $length = 10;
