@@ -10,7 +10,7 @@ use Marvin255\RandomStringGenerator\Tests\BaseCase;
 /**
  * @internal
  */
-class DummyRandomStringGeneratorTest extends BaseCase
+final class DummyRandomStringGeneratorTest extends BaseCase
 {
     /**
      * @test

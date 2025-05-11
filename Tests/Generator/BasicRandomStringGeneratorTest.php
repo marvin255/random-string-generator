@@ -12,7 +12,7 @@ use Marvin255\RandomStringGenerator\Vocabulary\Vocabulary;
 /**
  * @internal
  */
-class BasicRandomStringGeneratorTest extends BaseCase
+final class BasicRandomStringGeneratorTest extends BaseCase
 {
     private const MESSAGE_ZERO_LENGTH = 'Length can be less than zero';
     private const MESSAGE_EMTY_VOCABULARY = 'Vocabulary must be a non empty string';
