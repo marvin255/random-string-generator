@@ -12,9 +12,6 @@ use Marvin255\RandomStringGenerator\Tests\BaseCase;
  */
 final class MtRandomEngineTest extends BaseCase
 {
-    /**
-     * @test
-     */
     public function testRand(): void
     {
         $from = 12;

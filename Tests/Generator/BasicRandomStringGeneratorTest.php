@@ -18,9 +18,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
     private const MESSAGE_EMTY_VOCABULARY = 'Vocabulary must be a non empty string';
     private const MESSAGE_LESS_THAN_MIN_LENGTH = 'Length can be less than four';
 
-    /**
-     * @test
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('provideAlphanumeric')]
     public function testAlphanumeric(int $length, ?\Exception $e = null): void
     {
@@ -61,9 +58,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
         ];
     }
 
-    /**
-     * @test
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('provideAlpha')]
     public function testAlpha(int $length, ?\Exception $e = null): void
     {
@@ -105,8 +99,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
     }
 
     /**
-     * @test
-     *
      * @psalm-suppress InvalidLiteralArgument
      */
     #[\PHPUnit\Framework\Attributes\DataProvider('provideNumeric')]
@@ -149,9 +141,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
         ];
     }
 
-    /**
-     * @test
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('providePassword')]
     public function testPassword(int $length, ?\Exception $e = null): void
     {
@@ -217,8 +206,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
     }
 
     /**
-     * @test
-     *
      * @psalm-suppress InvalidLiteralArgument
      */
     public function testPasswordShuffle(): void
@@ -241,9 +228,6 @@ final class BasicRandomStringGeneratorTest extends BaseCase
         $this->assertFalse($is1Symbol && $is2Symbol && $is3Symbol && $is4Symbol);
     }
 
-    /**
-     * @test
-     */
     #[\PHPUnit\Framework\Attributes\DataProvider('provideString')]
     public function testString(int $length, string|Vocabulary $vocabulary, ?\Exception $e = null): void
     {
