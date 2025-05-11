@@ -20,9 +20,8 @@ final class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
-     *
-     * @dataProvider provideAlphanumeric
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideAlphanumeric')]
     public function testAlphanumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA_NUMERIC;
@@ -64,9 +63,8 @@ final class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
-     *
-     * @dataProvider provideAlpha
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideAlpha')]
     public function testAlpha(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::ALPHA;
@@ -109,10 +107,9 @@ final class BasicRandomStringGeneratorTest extends BaseCase
     /**
      * @test
      *
-     * @dataProvider provideNumeric
-     *
      * @psalm-suppress InvalidLiteralArgument
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideNumeric')]
     public function testNumeric(int $length, ?\Exception $e = null): void
     {
         $vocabulary = Vocabulary::NUMERIC;
@@ -154,9 +151,8 @@ final class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
-     *
-     * @dataProvider providePassword
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('providePassword')]
     public function testPassword(int $length, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();
@@ -247,9 +243,8 @@ final class BasicRandomStringGeneratorTest extends BaseCase
 
     /**
      * @test
-     *
-     * @dataProvider provideString
      */
+    #[\PHPUnit\Framework\Attributes\DataProvider('provideString')]
     public function testString(int $length, string|Vocabulary $vocabulary, ?\Exception $e = null): void
     {
         $engine = new MtRandomEngine();
