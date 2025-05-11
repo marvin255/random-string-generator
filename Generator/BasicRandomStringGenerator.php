@@ -21,6 +21,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function alphanumeric(int $length): string
     {
         return $this->string($length, Vocabulary::ALPHA_NUMERIC);
@@ -29,6 +30,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function alpha(int $length): string
     {
         return $this->string($length, Vocabulary::ALPHA);
@@ -37,6 +39,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function numeric(int $length): string
     {
         return $this->string($length, Vocabulary::NUMERIC);
@@ -45,6 +48,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function password(int $length): string
     {
         if ($length < self::MIN_PASSWORD_LENGTH) {
@@ -73,6 +77,7 @@ final class BasicRandomStringGenerator implements RandomStringGenerator
     /**
      * {@inheritDoc}
      */
+    #[\Override]
     public function string(int $length, string|Vocabulary $vocabulary): string
     {
         if ($length < 0) {

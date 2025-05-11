@@ -24,6 +24,7 @@ final class Configuration implements ConfigurationInterface
      * @psalm-suppress UndefinedMethod
      * @psalm-suppress MixedMethodCall
      */
+    #[\Override]
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder(self::CONFIG_NAME);
