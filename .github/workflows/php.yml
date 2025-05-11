@@ -24,7 +24,7 @@ jobs:
       id: composer-cache-dir
       run: echo "::set-output name=dir::$(composer config cache-files-dir)"
     - name: Cache dependencies
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ${{ steps.composer-cache-dir.outputs.dir }}
         key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
@@ -64,7 +64,7 @@ jobs:
           extensions: mbstring, dom, fileinfo, mysql, curl
       - name: Cache Symfony app
         id: symfony-app-cache
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: symfony_app_tmp
           key: ${{ runner.os }}-symfony-${{ matrix.symfony-versions }}-${{ matrix.php-versions }}
