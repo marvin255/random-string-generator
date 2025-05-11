@@ -44,14 +44,12 @@ jobs:
       fail-fast: false
       matrix:
         php-versions: ['8.1', '8.2', '8.3']
-        symfony-versions: ['6.3', '6.4']
+        symfony-versions: ['6.4']
         include:
-          - php-versions: '8.2'
-            symfony-versions: '7.0'
-          - php-versions: '8.3'
-            symfony-versions: '7.0'
           - php-versions: '8.3'
             symfony-versions: '7.1'
+          - php-versions: '8.3'
+            symfony-versions: '7.2'
     env:
       SYMFONY_FOLDER: symfony_app
     steps:
