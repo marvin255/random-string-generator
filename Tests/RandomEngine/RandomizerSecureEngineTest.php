@@ -9,6 +9,8 @@ use Marvin255\RandomStringGenerator\Tests\BaseCase;
 
 /**
  * @internal
+ *
+ * @psalm-api
  */
 final class RandomizerSecureEngineTest extends BaseCase
 {
