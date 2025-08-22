@@ -17,11 +17,6 @@
     </projectFiles>
 
     <issueHandlers>
-        <PropertyNotSetInConstructor>
-            <errorLevel type="suppress">
-                <directory name="./Tests"/>
-            </errorLevel>
-        </PropertyNotSetInConstructor>
         <UnusedClass>
             <errorLevel type="suppress">
                 <directory name="./Tests"/>
