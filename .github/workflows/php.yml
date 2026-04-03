@@ -13,7 +13,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php-versions: ['8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4']
     steps:
     - uses: actions/checkout@v2
     - name: Install PHP
@@ -43,13 +43,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-versions: ['8.1', '8.2', '8.3']
+        php-versions: ['8.2', '8.3', '8.4', '8.5']
         symfony-versions: ['6.4']
         include:
           - php-versions: '8.3'
-            symfony-versions: '7.1'
-          - php-versions: '8.3'
-            symfony-versions: '7.2'
+            symfony-versions: '7.4'
+          - php-versions: '8.4'
+            symfony-versions: '7.4'
+          - php-versions: '8.5'
+            symfony-versions: '7.4'
+          - php-versions: '8.4'
+            symfony-versions: '8.0'
+          - php-versions: '8.5'
+            symfony-versions: '8.0'
     env:
       SYMFONY_FOLDER: symfony_app
     steps:
@@ -91,6 +97,7 @@ jobs:
           echo "APP_SECRET=test" >> $SYMFONY_FOLDER/.env
           echo "DATABASE_URL=mysql://test:test@127.0.0.1:3306/test?serverVersion=5.7" >> $SYMFONY_FOLDER/.env
           echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> $SYMFONY_FOLDER/.env
+          echo "DEFAULT_URI=https://example.org" >> $SYMFONY_FOLDER/.env
       - name: Install module
         run: |
           cd $SYMFONY_FOLDER

@@ -22,6 +22,7 @@
                 <directory name="./Tests"/>
             </errorLevel>
         </UnusedClass>
+        <UnusedMethodCall errorLevel="suppress"/>
         <MissingClassConstType errorLevel="suppress"/>
     </issueHandlers>
 </psalm>
