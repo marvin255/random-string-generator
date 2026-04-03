@@ -1,4 +1,4 @@
-FROM php:8.4-cli-alpine
+FROM php:8.5-cli-alpine
 
 
 RUN set -xe && apk update && apk add --no-cache \
