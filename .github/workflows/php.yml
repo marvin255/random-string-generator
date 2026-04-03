@@ -47,11 +47,9 @@ jobs:
         symfony-versions: ['6.4']
         include:
           - php-versions: '8.3'
-            symfony-versions: '7.1'
-          - php-versions: '8.3'
-            symfony-versions: '7.2'
+            symfony-versions: '7.4'
           - php-versions: '8.4'
-            symfony-versions: '8.1'
+            symfony-versions: '8.0'
     env:
       SYMFONY_FOLDER: symfony_app
     steps:
