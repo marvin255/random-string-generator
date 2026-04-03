@@ -91,6 +91,7 @@ jobs:
           echo "APP_SECRET=test" >> $SYMFONY_FOLDER/.env
           echo "DATABASE_URL=mysql://test:test@127.0.0.1:3306/test?serverVersion=5.7" >> $SYMFONY_FOLDER/.env
           echo "MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0" >> $SYMFONY_FOLDER/.env
+          echo "DEFAULT_URI=https://example.org" >> $SYMFONY_FOLDER/.env
       - name: Install module
         run: |
           cd $SYMFONY_FOLDER
