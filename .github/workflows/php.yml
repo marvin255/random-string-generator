@@ -46,7 +46,7 @@ jobs:
         php-versions: ['8.1', '8.2', '8.3', '8.4']
         symfony-versions: ['6.4']
         include:
-          - php-versions: '8.3'
+          - php-versions: ['8.3', '8.4']
             symfony-versions: '7.4'
           - php-versions: '8.4'
             symfony-versions: '8.0'
